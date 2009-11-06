@@ -1,0 +1,8 @@
+#!/bin/zsh
+#
+# Author:       enko
+# Last updated: nov 2009
+#-----------------------------------------------------------------------
+# Variables accessable by all config files
+ 
+HOSTNAME=$(hostname)

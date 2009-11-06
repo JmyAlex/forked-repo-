@@ -1,0 +1,76 @@
+#!/bin/zsh
+#
+# Author:       enko
+# Last updated: nov 2009
+#-----------------------------------------------------------------------
+#
+#-- autoload -----------------------------------------------------------
+#
+autoload -U compinit && compinit
+autoload zmv
+autoload -U zfinit && zfinit
+autoload -U zcalc
+autoload zsh/terminfo # Вызов помощи по F1
+bindkey $terminfo[kf1] run-help
+# 
+#-- history ------------------------------------------------------------
+#
+HISTFILE=~/.zsh/history
+HISTSIZE=5000
+SAVEHIST=5000
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+# 
+#-- type a dir's name to cd into it ------------------------------------
+compctl -/ cd
+# 
+#-- Some options.. -----------------------------------------------------
+#
+setopt autopushd pushdminus pushdsilent pushdtohome
+setopt autocd
+setopt cdablevars
+setopt globdots
+setopt ignoreeof
+setopt interactivecomments
+setopt banghist
+setopt noclobber
+setopt hist_reduce_blanks
+setopt hist_ignore_space
+setopt SH_WORD_SPLIT
+setopt nohup
+setopt nobeep              # i hate beeps
+setopt automenu
+setopt autopushd           # automatically append dirs to the push/pop list
+setopt pushdignoredups     # and don't duplicate them
+setopt cdablevars          # avoid the need for an explicit $
+setopt nohup               # and don't kill them, either
+setopt nolisttypes         # show types in completion
+setopt extendedglob        # weird & wacky pattern matching - yay zsh!
+setopt completeinword      # not just at the end
+setopt alwaystoend         # when complete from middle, move cursor
+setopt nopromptcr          # don't add \n which overwrites cmds with no \n
+setopt histverify          # when using ! cmds, confirm first
+setopt interactivecomments # escape commands so i can use them later
+#
+#-- перенаправляем -----------------------------------------------------
+#
+READNULLCMD=${PAGER}
+#
+#-- оформим подсветку в grep -------------------------------------------
+#
+export GREP_COLOR="1;33"
+#
+#-- если стоит most то заюзаем в качестве $PAGER -----------------------
+#
+[[ -x $(whence -p most) ]] && export PAGER=$(whence -p most)
+export EDITOR="vim"
+export VISUAL="vim"
+export BROWSER="firefox"
+export LESSCHARSET=UTF-8
+#
+#-- Смотрим ман на русском ---------------------------------------------
+#
+export MANOPT="-L ru"
+#
+#-----------------------------------------------------------------------

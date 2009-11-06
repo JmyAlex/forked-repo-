@@ -1,0 +1,95 @@
+!-----------------------------------------------------------------------
+! file:     ~/.Xresources
+! author:   enko
+! modified: oct 2009
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+!
+!
+! ----------------------------------------------------------------------
+!
+!            X F T    S E T T I N G S
+!
+Xft.dpi:                        96.0
+Xft.hinting:                    true
+Xft.hintstyle:                  hintslight
+Xft.antialias:                  true
+Xft.rgba:                       none
+! ----------------------------------------------------------------------
+!
+!            X C U R S O R
+!
+Xcursor*theme:               Vanilla-DMZ-AA
+Xcursor.size:                22 
+! ----------------------------------------------------------------------
+!
+!            X T E R M   #прописывать здесь,в Xdefaults не срабатывает..
+!
+xterm*termName:             	xterm-256color
+xterm*internalBorder:       	0
+xterm*loginShell:           	true
+xterm*scrollBar:            	false
+xterm*cursorBlink:          	false
+xterm*geometry:             	80x23
+xterm*saveLines:            	65535
+xterm*dynamicColors:        	on
+xterm*highlightSelection:   	true
+xterm*charClass:            	33:48,35-38:48,39:43,42-47:48,58-59:48,61:48,63-64:48,126:48
+xterm*utf8:                 	2
+xterm*eightBitInput:        	true
+xterm*faceName:             	fixed:pixelsize=15
+xterm*cursorColor:          	#dcdccc
+xterm*shading:              	30
+xterm*transparent:          	true
+! ----------------------------------------------------------------------
+! 
+!            C O L O R    S E T T I N G S
+!
+! Zenburn theme
+xterm*background:           	#3f3f3f
+xterm*foreground:           	#dcdccc
+xterm*color0:      				#1E2320
+xterm*color1:      				#705050
+xterm*color2:      				#60b48a
+xterm*color3:      				#dfaf8f
+xterm*color4:      				#506070
+xterm*color5:      				#dc8cc3
+xterm*color6:      				#8cd0d3
+xterm*color7:      				#dcdccc
+xterm*color8:      				#709080
+xterm*color9:      				#dca3a3
+xterm*color10:     				#c3bf9f
+xterm*color11:     				#f0dfaf
+xterm*color12:     				#94bff3
+xterm*color13:     				#ec93d3
+xterm*color14:     				#93e0e3
+xterm*color15:     				#ffffff
+!-----------------------------------------------------------------------
+!
+!             Y E A H C O N S O L E
+!
+yeahconsole*term:           	xterm
+!левая граница  
+yeahconsole*xOffset: 	   		480
+! ширина 
+yeahconsole*screenWidth:   	    750
+!высота
+yeahconsole*consoleHeight:  	20
+yeahconsole*toggleKey:      	None+Menu
+yeahconsole*background:     	#656060
+yeahconsole*foreground:     	#E6E3E6
+yeahconsole*cursorColor:    	#E6E3E6
+yeahconsole*restart:1
+yeahconsole*keyFull:        	None+F11
+!хоткеи дли изменения размера
+!(минус и плюс на NumLock'е)
+yeahconsole*keySmaller:     	Control+KP_Subtract
+yeahconsole*keyBigger:      	Control+KP_Add
+yeahconsole*faceName:     	    consolas:size=12
+yeahconsole*boldFont:       	consolas:style=Bold:size=12
+!обрабатываем Esc по человечески
+yeahconsole*metaSendsEscape: 	true
+yeahconsole*aniDelay:           10
+!-----------------------------------------------------------------------
+dzen2.font:       -*-fixed-*-*-*-*-*-*-*-*-*-*-*-*
+dzen2.foreground: #22EE11
+dzen2.background: green

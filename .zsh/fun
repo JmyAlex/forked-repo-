@@ -1,0 +1,14 @@
+#!/bin/zsh
+#
+# Author:       enko
+# Last updated: nov 2009
+#-----------------------------------------------------------------------
+#fortune lorquotes
+#/usr/bin/fortune lor
+fortune lorquotes # чтобы работало ставим 'fortune-mod-lorquotes' от Muhas.
+#корова говорит всякую херь:
+#/usr/bin/cowsay `echo -n Welcome, $USER`
+# конвертируем всякую дурь
+mpg2flv() { ffmpeg -i $1 -ar 22050 -ab 32 -f flv -s 320x240 `echo $1 | awk -F . '{print $1}'`.flv }
+flv2xvid() { mencoder "$1" -vf scale=320:240  -ovc xvid -xvidencopts bitrate=250:autoaspect -vf pp=lb -oac mp3lame  -lameopts fast:preset=standard -o  "./basename $1.avi" }
+flv2divx() { mencoder "$1" --vf scale=320:240  -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=250:mbd=2:v4mv:autoaspect -vf pp=lb -oac mp3lame  -lameopts fast:preset=standard -o  "./basename $1.avi" }

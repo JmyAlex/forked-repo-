@@ -1,0 +1,157 @@
+#!/bin/zsh
+#
+# Author:       enko
+# Last updated: nov 2009
+#
+#-----------------------------------------------------------------------
+#
+#-- Pacman -------------------------------------------------------------
+#
+alias pacman='pacman-color'                       # Цветной Pacman
+alias pacup='sudo pacman -Syu'                    # Sync, Update & Upgrade
+alias pacsy='sudo pacman -Sy'                     # Sync & Update
+alias paclu='pacman -Qu'                          # List upgradeable
+alias pacin='sudo pacman -S'                      # Установить пакет
+alias pacnd='sudo pacman -Sd'                     # Установить пакет,игнорируя зависимости
+alias pacrm='sudo pacman -Rsn'                    # Удалить пакет,его конфигурации и все зависимости,которые больше не нужны
+alias pacrd='sudo pacman -Rd'                     # Удалить пакет,игнорируя зависимости
+alias pacs='pacman -Ss'                           # Поиск пакета
+alias pacsl='pacman -Qs'                          # Поиск среди установленных пакетов
+alias pacsi='pacman -Si'						  # Вывод информации о пакете
+alias pacqi='pacman -Qi'						  # Вывод информации об установленном пакете
+alias pacls='pacman -Ql' 				          # Вывод списка файлов пакета
+alias pacfi='pacman -Qo'						  # Какой пакет является владельцем файла? 
+alias paccl='sudo pacman -Scc'				      # Очистка кэша pacman`а
+alias pacdl='sudo pacman -Sw' 					  # Загрузить,но не устанавливать пакет
+alias paclo='pacman -Qdt' 						  # Сироты
+alias paclrm='pacman -Rsn $(pacman -Qdtq)'        # Удалить сирот
+alias paclist='pacman -Qqe > installed_apps.txt'  # Вывод установ.пакетов в файл
+#for x in $(cat installed_apps.txt); do pacman -S $x; done --Установить пакеты из ранее созданного списка
+#
+#-- Yaourt -------------------------------------------------------------
+#
+alias yar='yaourt -S'
+alias yall='yaourt -Syu'
+alias yas='yaourt -Ss'
+#
+#-- Папки/файлы --------------------------------------------------------
+#
+# переименование-перемещение c пogтвepжgeнueм без коррекции
+alias mv='nocorrect mv -i'
+# рекурсивное копирование с подтверждением без коррекции
+alias cp='nocorrect cp -iR'
+# удаление с подтверждением без коррекции
+alias rm='nocorrect rm -i'
+# принудимтельное удаление без коррекции
+alias rmf='nocorrect rm -f'
+# принудительное рекурсивное удаление без коррекции
+alias rmrf='nocorrect rm -fR'
+# создание каталогов без коррекции
+alias mkdir='nocorrect mkdir'
+#
+#-- Глобальные алиасы --------------------------------------------------
+#
+alias -g H="| head"
+alias -g T="| tail"
+alias -g G="| grep"
+alias -g L="| less"
+alias -g M="| most"
+alias -g B="&|"
+alias -g HL="--help"
+alias -g LL="2>&1 | less"
+alias -g CA="2>&1 | cat -A"
+alias -g NE="2> /dev/null"
+alias -g NUL="> /dev/null 2>&1"
+#
+#-- конвертим вывод в utf8 ---------------------------------------------
+alias -g KU="| iconv -c -f koi8r -t utf8"
+alias -g CU="| iconv -c -f cp1251 -t utf8"
+#ну и обратно тоже
+alias -g UK="| iconv -c -f utf8 -t koi8r"
+alias -g UC="| iconv -c -f utf8 -t cp1251"
+alias reboot="sudo reboot"
+alias gparted="sudo gparted"
+#-- пишем диски --------------------------------------------------------
+# nrg2iso
+alias nrg2iso='dd bs=1k if=$1 of=$2 skip=300'
+# запись образа :
+#alias reciso="growisofs -Z /dev/dvd=image.iso"
+#alias reciso="cdrecord dev=/dev/cdrw"
+# снять образ диска
+alias catiso="cat /dev/cdrom > image.iso"
+#alias catiso="dd if=/dev/cdrom of=myimage.iso"
+# очистить dvd
+alias blankcd="growisofs -Z /dev/cdrom=/dev/zero" #или dvd+rw-format -f /dev/dvd
+# запись каталога на диск:
+alias rec="growisofs -Z /dev/dvd -R -J"
+#создать образ из содержимого каталога например /home/user/music
+alias makeiso="mkisofs -joliet-long -r -o disk.iso" #например /home/user/music
+alias eject='sudo eject /dev/sr0'
+#монтирование iso. общий синтаксис команды получается такой: mountiso [что] [куда]
+alias mountiso='sudo mount -o loop -t iso9660'
+#монтирование nrg. общий синтаксис команды получается такой: mountnrg [что] [куда]
+alias mountnrg='mount -t udf,iso9660 -o loop,ro,offset=307200'
+#
+#-- всякие алиасы ------------------------------------------------------
+#
+alias wget=wget -c –passive-ftp –no-check-certificate
+alias ka='killall'
+alias ip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
+alias svim='sudo vim'
+alias ping='ping -c 5'
+alias xp='xprop | grep "WM_WINDOW_ROLE\|WM_CLASS" && echo "WM_CLASS(STRING) = \"NAME\", \"CLASS\""'
+alias upfonts='sudo fc-cache -vf'
+alias capture='ffmpeg -f x11grab -s sxga -r 24 -i :0.0 ~/capture.mpg'
+alias xe='cat /var/log/Xorg.0.log |grep EE'
+alias xw='cat /var/log/Xorg.0.log |grep WW'
+alias fu='sudo ~/bin/full_upgrade.sh'
+alias shot='~/bin/shot.sh'
+alias gettime='sudo /usr/bin/ntpdate ru.pool.ntp.org'
+alias dot='~/bin/dotfiles.sh'
+alias 'ex=extract'
+alias grep='grep --color=auto'
+alias df='df -Th'
+alias du='du -h'
+alias -g KU="| iconv -c -f koi8r -t utf8"          #конвертим вывод в utf8
+alias -g CU="| iconv -c -f cp1251 -t utf8"
+alias -g UK="| iconv -c -f utf8 -t koi8r"          #ну и обратно тоже
+alias -g UC="| iconv -c -f utf8 -t cp1251"
+alias tree='tree -L 2 -d -l'
+alias reboot="sudo reboot"
+alias mp32utf='find /mnt/data/music/ -iname "*.mp3" -print0 | xargs -0 mid3iconv -e CP1251 -d --remove-v1'
+alias mplayerlist='find /mnt/data/music -type f -name "*.mp3" -print > list.m3u'
+#
+#-- ls ----------------------------------------------------------------- 
+#
+alias ls='ls -F --color=auto'
+alias lsd='ls -ld *(/)'                 # only show directories
+alias lad='ls -ld .*(/)'                # only show dot-directories
+alias lsa='ls -a .*(.)'                 # only show dot-files
+alias lsbig='ls -lSh *(.) | head'       # display the biggest files
+alias lssmall='ls -Sl *(.) | tail'      # display the smallest files
+alias lsnew='ls -rtl *(.) | tail'       # display the newest files
+alias lsold='ls -rtl *(.) | head'       # display the oldest files
+alias ll='ls -ahl --color | more; echo "\e[1;32m --[\e[1;34m Dirs:\e[1;36m `ls -al | egrep \"^drw\" | wc -l` \e[1;32m|\e[1;35m Files: \e[1;31m`ls -al | egrep -v \"^drw\" | grep -v total | wc -l` \e[1;32m]--"'
+alias lls="ls -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g'  -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g'" # с цифровым видом прав
+#
+#-- Miscellanious ------------------------------------------------------
+#
+alias aliases='cat ~/.zsh/aliases'
+alias function='cat ~/.zsh/function'
+alias option='cat ~/.zsh/option'
+alias style='cat ~/.zsh/style'
+alias fun='cat ~/.zsh/fun'
+alias prompt='cat ~/.zsh/prompt'
+alias keybindings='cat ~/.zsh/keybindings'
+alias xreload='xrdb -merge ~/.Xdefaults'
+#
+#-- chmod --------------------------------------------------------------
+#
+#a2# Execute \kbd{chmod 600}
+alias rw-='chmod 600'
+#a2# Execute \kbd{chmod 700}
+alias rwx='chmod 700'
+#m# a2 r-{}- Execute \kbd{chmod 644}
+alias r--='chmod 644'
+#a2# Execute \kbd{chmod 755}
+alias r-x='chmod 755'

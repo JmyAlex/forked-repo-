@@ -1,0 +1,94 @@
+#!/bin/zsh
+#
+# Author:       enko
+# Last updated: nov 2009
+#-----------------------------------------------------------------------
+#
+#-- Window Title -------------------------------------------------------
+#
+case $TERM in
+    *xterm*|rxvt|rxvt-unicode|rxvt-256color|(dt|k|E)term)
+        precmd () { print -Pn "\e]0;$TERM - [%n@%M]%# [%~]\a" }
+        preexec () { print -Pn "\e]0;$TERM - [%n@%M]%# [%~] ($1)\a" }
+    ;;
+    screen)
+        precmd () {
+            print -Pn "\e]83;title \"$1\"\a"
+            print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~]\a"
+        }
+        preexec () {
+            print -Pn "\e]83;title \"$1\"\a"
+            print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~] ($1)\a"
+        }
+    ;;
+esac
+
+typeset -g -A key
+#
+#-- Color table Z shell ------------------------------------------------
+#
+#Prompt Color
+   fg_black=$'\e[0;30m'
+   fg_red=$'\e[0;31m'
+   fg_green=$'\e[0;32m'
+   fg_brown=$'\e[0;33m'
+   fg_blue=$'\e[0;34m'
+   fg_purple=$'\e[0;35m'
+   fg_cyan=$'\e[0;36m'
+   fg_lgray=$'\e[0;37m'
+   fg_dgray=$'\e[1;30m'
+   fg_lred=$'\e[1;31m'
+   fg_lgreen=$'\e[1;32m'
+   fg_yellow=$'\e[1;33m'
+   fg_lblue=$'\e[1;34m'
+   fg_pink=$'\e[1;35m'
+   fg_lcyan=$'\e[1;36m'
+   fg_white=$'\e[1;37m'
+#Text Background Colors
+   bg_red=$'\e[0;41m'
+   bg_green=$'\e[0;42m'
+   bg_brown=$'\e[0;43m'
+   bg_blue=$'\e[0;44m'
+   bg_purple=$'\e[0;45m'
+   bg_cyan=$'\e[0;46m'
+   bg_gray=$'\e[0;47m'
+#Attributes
+   at_normal=$'\e[0m'
+   at_bold=$'\e[1m'
+   at_italics=$'\e[3m'
+   at_underl=$'\e[4m'
+   at_blink=$'\e[5m'
+   at_outline=$'\e[6m'
+   at_reverse=$'\e[7m'
+   at_nondisp=$'\e[8m'
+   at_strike=$'\e[9m'
+   at_boldoff=$'\e[22m'
+   at_italicsoff=$'\e[23m'
+   at_underloff=$'\e[24m'
+   at_blinkoff=$'\e[25m'
+   at_reverseoff=$'\e[27m'
+   at_strikeoff=$'\e[29m'
+#
+#-- Prompt Config ------------------------------------------------------
+#
+setprompt () {
+    # load some modules
+    autoload -U colors zsh/terminfo
+    colors
+    setopt prompt_subst
+PROMPT="%{$fg_bold[green]%}>> %{$reset_color%}"
+RPROMPT="%{$fg_bold[blue]%}[%~] %{$reset_color%}% %(?,%{$fg[green]%}:%)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%}"
+SPROMPT='zsh: Заменить '\''%R'\'' на '\''%r'\'' ? [Yes/No/Abort/Edit] '
+LISTPROMPT=''
+}
+# 
+#-- Prompt init --------------------------------------------------------
+#
+setprompt
+#
+#-- разукрашиваем ls и автодополнение ----------------------------------
+export LS_COLORS='no=00;37:fi=00;37:di=01;36:ln=04;36:pi=33:so=01;35:do=01;35:bd=33;01:cd=33;01:or=31;01:su=37:sg=30:tw=30:ow=34:st=37:ex=01;31:*.cmd=01;31:*.exe=01;31:*.com=01;31:*.btm=01;31:*.sh=01;31:*.run=01;31:*.tar=33:*.tgz=33:*.arj=33:*.taz=33:*.lzh=33:*.zip=33:*.z=33:*.Z=33:*.gz=33:*.bz2=33:*.deb=33:*.rpm=33:*.jar=33:*.rar=33:*.jpg=32:*.jpeg=32:*.gif=32:*.bmp=32:*.pbm=32:*.pgm=32:*.ppm=32:*.tga=32:*.xbm=32:*.xpm=32:*.tif=32:*.tiff=32:*.png=32:*.mov=34:*.mpg=34:*.mpeg=34:*.avi=34:*.fli=34:*.flv=34:*.3gp=34:*.mp4=34:*.divx=34:*.gl=32:*.dl=32:*.xcf=32:*.xwd=32:*.flac=35:*.mp3=35:*.mpc=35:*.ogg=35:*.wav=35:*.m3u=35:';
+#
+# ----------------------------------------------------------------------
+
+ 

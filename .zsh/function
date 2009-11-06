@@ -1,0 +1,140 @@
+#!/bin/zsh
+#
+# Author:       enko
+# Last updated: nov 2009
+#-----------------------------------------------------------------------
+#
+#-- reload zshrc -------------------------------------------------------
+#
+function src() {
+        autoload -U zrecompile
+                [[ -f ~/.zshrc ]] && zrecompile -p ~/.zshrc
+for i in "$(find ~/.zsh/ -type f)"; do
+[[ -f $i ]] && zrecompile -p $i
+[[ -f $i.zwc.old ]] && rm -f $i.zwc.old
+done
+                [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
+                [[ -f ~/.zcompdump ]] && zrecompile -p ~/.zcompdump
+                [[ -f ~/.zshrc.zwc.old ]] && rm -f ~/.zshrc.zwc.old
+                [[ -f ~/.zcompdump.zwc.old ]] && rm -f ~/.zcompdump.zwc.old
+                source ~/.zshrc
+}
+#
+#-- быстрое переименование ---------------------------------------------
+#
+name() {
+    name=$1
+    vared -c -p 'переименовать в: ' name
+    command mv $1 $name
+}
+#
+#-- архивы -------------------------------------------------------------
+#
+function extract() {
+    local old_dirs current_dirs lower
+    lower=${(L)1}
+    old_dirs=( *(N/) )
+    if [[ -z "$1" ]]; then
+        print -P "Usage: extract filename"
+        print -P "Extract a given file based on the extension."
+    elif [[ -f "$1" ]]; then
+        case "$1" in
+            *.tbz2 | *.tar.bz2) tar -xvjf "$1" ;;
+            *.txz | *.tar.xz) tar -xvJf "$1" ;;
+            *.tgz | *.tar.gz) tar -xvzf "$1" ;;
+            *.tar | *.cbt) tar -xvf "$1" ;;
+            *.zip | *.cbz) unzip "$1" ;;
+            *.rar | *.cbr) unrar x "$1" ;;
+            *.arj) unarj x "$1" ;;
+            *.ace) unace x "$1" ;;
+            *.bz2) bunzip2 "$1" ;;
+            *.xz) unxz "$1" ;;
+            *.gz) gunzip "$1" ;;
+            *.7z) 7z x "$1" ;;
+            *.Z) uncompress "$1" ;;
+            *.001) lxsplit -j "$1" ;;
+            *.gpg) gpg -d "$1" | tar -xvzf - ;;
+            *) echo "Error: failed to extract '$1'" ;;
+        esac
+    else
+        echo "Error: '$1' is not a valid file for extraction"
+    fi
+ 
+    # Change in to the newly created directory, and
+    # list the directory contents, if there is one.
+    current_dirs=( *(N/) )
+    for i in {1..${#current_dirs}}; do
+        if [[ $current_dirs[$i] != $old_dirs[$i] ]]; then
+            cd $current_dirs[$i]
+            break
+        fi
+    done
+}
+ 
+roll () {
+    FILE=$1
+    case $FILE in
+        *.tar.bz2) shift && tar cjf $FILE $* ;;
+        *.tar.gz) shift && tar czf $FILE $* ;;
+        *.tgz) shift && tar czf $FILE $* ;;
+        *.zip) shift && zip $FILE $* ;;
+        *.rar) shift && rar $FILE $* ;;
+    esac
+}
+#
+#-- display a of possible passwords  -----------------------------------
+#
+function mkpass()
+{
+	perl <<EOPERL
+	my @a = ("a".."z","A".."Z","0".."9",(split //, q{#@,.<>$%&()*^}));
+	for (1..10) { 
+		print join "", map { \$a[rand @a] } (1..rand(3)+7);
+		print qq{\n} 
+	}
+EOPERL
+}
+#
+#-- Color theme --------------------------------------------------------
+#
+function color()
+{
+        esc="\033["
+        echo -e "\t 40\t 41\t 42\t 43\t 44\t 45\t 46\t 47"
+        for fore in 30 31 32 33 34 35 36 37; do
+                line1="$fore  "
+                line2="    "
+                for back in 40 41 42 43 44 45 46 47; do
+                        line1="${line1}${esc}${back};${fore}m Normal  ${esc}0m"
+                        line2="${line2}${esc}${back};${fore};1m Bold    ${esc}0m"
+                done
+                echo -e "$line1\n$line2"
+        done
+}
+#
+#-- make a thumb %20 the size of a pic ---------------------------------
+#
+thumb() {
+  for pic in "$@"; do
+    case "$pic" in
+      *.jpg) thumb="$(echo "$pic" | sed s/.jpg/-thumb.jpg/g)" ;;
+      *.jpeg) thumb="$(echo "$pic" | sed s/.jpeg/-thumb.jpeg/g)" ;;
+      *.png) thumb="$(echo "$pic" | sed s/.png/-thumb.png/g)" ;;
+      *) echo "usage: thumbit [file{.jpg,.jpeg,.png}]" && return 1 ;;
+    esac
+    cp "$pic" "$thumb"
+    mogrify -resize 20% "$thumb"
+  done
+}
+#
+#-- manage services ----------------------------------------------------
+#
+service() {
+  if [ $# -lt 2 ]; then
+    echo "usage: service [service] [stop|start|restart]"
+  else
+    sudo /etc/rc.d/$1 $2
+  fi
+}
+#
+# ----------------------------------------------------------------------
