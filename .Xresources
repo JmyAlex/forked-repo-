@@ -1,9 +1,8 @@
 !-----------------------------------------------------------------------
 ! file:     ~/.Xresources
 ! author:   enko
-! modified: oct 2009
+! modified: nov 2009
 ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
-!
 !
 ! ----------------------------------------------------------------------
 !
@@ -18,11 +17,11 @@ Xft.rgba:                       none
 !
 !            X C U R S O R
 !
-Xcursor*theme:               Vanilla-DMZ-AA
-Xcursor.size:                22 
+Xcursor*theme:                  Vanilla-DMZ-AA
+Xcursor.size:                   22 
 ! ----------------------------------------------------------------------
 !
-!            X T E R M   #прописывать здесь,в Xdefaults не срабатывает..
+!            X T E R M          #прописывать здесь,в Xdefaults не срабатывает..
 !
 xterm*termName:             	xterm-256color
 xterm*internalBorder:       	0
@@ -63,33 +62,3 @@ xterm*color12:     				#94bff3
 xterm*color13:     				#ec93d3
 xterm*color14:     				#93e0e3
 xterm*color15:     				#ffffff
-!-----------------------------------------------------------------------
-!
-!             Y E A H C O N S O L E
-!
-yeahconsole*term:           	xterm
-!левая граница  
-yeahconsole*xOffset: 	   		480
-! ширина 
-yeahconsole*screenWidth:   	    750
-!высота
-yeahconsole*consoleHeight:  	20
-yeahconsole*toggleKey:      	None+Menu
-yeahconsole*background:     	#656060
-yeahconsole*foreground:     	#E6E3E6
-yeahconsole*cursorColor:    	#E6E3E6
-yeahconsole*restart:1
-yeahconsole*keyFull:        	None+F11
-!хоткеи дли изменения размера
-!(минус и плюс на NumLock'е)
-yeahconsole*keySmaller:     	Control+KP_Subtract
-yeahconsole*keyBigger:      	Control+KP_Add
-yeahconsole*faceName:     	    consolas:size=12
-yeahconsole*boldFont:       	consolas:style=Bold:size=12
-!обрабатываем Esc по человечески
-yeahconsole*metaSendsEscape: 	true
-yeahconsole*aniDelay:           10
-!-----------------------------------------------------------------------
-dzen2.font:       -*-fixed-*-*-*-*-*-*-*-*-*-*-*-*
-dzen2.foreground: #22EE11
-dzen2.background: green
