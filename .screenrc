@@ -26,7 +26,7 @@ screen -t mpd ncmpcpp
 screen -t htop htop
 select 0 
 #Пользовательские настройки:
-#shelltitle '$ | vint'
+#shelltitle '$ | enko'
 #Hotkeys:
 
 bindkey -k F1 next 
