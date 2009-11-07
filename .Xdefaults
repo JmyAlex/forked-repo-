@@ -9,9 +9,9 @@
 !
 Xft.dpi:                     96.0
 Xft.hinting:                 true
-Xft.hintstyle:               hintslight
+Xft.hintstyle:               hintfull
 Xft.antialias:               true
-Xft.rgba:                    none
+Xft.rgba:                    rgb
 ! ----------------------------------------------------------------------
 !
 !             X C U R S O R

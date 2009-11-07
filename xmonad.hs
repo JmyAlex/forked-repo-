@@ -42,13 +42,18 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 --import XMonad.Layout.Spacing
 
+-- X11
+import Graphics.X11.Xlib.Extras
+import Foreign.C.Types (CLong)
+
 -- Variables -----------------------------------------------------------
 --
 
 myTerminal               = "urxvt"
-myBorderWidth            = 3
+myBorderWidth            = 1
 myModMask                = mod4Mask
 myWorkspaces             = ["main", "web", "jabber", "hub"]-- ++ map show [5..9]
+myFont                   = "-xos4-terminus-bold-r-*-*-16-*-*-*-*-*-iso10646-*"
 
 -- Color ---------------------------------------------------------------
 --
@@ -68,7 +73,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                 xK_r      ), shellPrompt defaultXPConfig)
       , ((modMask,                 xK_w      ), spawn "nitrogen --no-recurse --sort=alpha /mnt/data/wallpapers")
       , ((modMask,                 xK_s      ), spawn "sakura -e screen")
-      , ((modMask,                 xK_Print  ), spawn "scrot -q85 /home/enko/images/screenshots/%Y-%m-%d.png") 
+      , ((modMask,                 xK_Print  ), spawn "scrot -d 1 /home/enko/images/screenshots/%d.%m.%Y-%M%S.png") 
       -- file manager
       , ((modMask,                 xK_d      ), spawn "pcmanfm ~") 
       , ((modMask,                 xK_f      ), spawn "firefox")
@@ -80,11 +85,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask,                 xK_z      ), spawn "mpc prev")
       , ((modMask .|. controlMask, xK_b      ), spawn "mpc seek +2%")
       , ((modMask .|. controlMask, xK_z      ), spawn "mpc seek -2%")
-      , ((modMask,                 xK_n      ), spawn "urxvt -e ncmpcpp" )
-      --layouts
+      , ((modMask,                 xK_n      ), spawn "urxvt -e ncmpcpp")
+      -- layouts
       , ((modMask,                 xK_space  ), sendMessage NextLayout)
       , ((modMask .|. shiftMask,   xK_space  ), setLayout $ XMonad.layoutHook conf)
-
       -- refresh
       --, ((modMask,                 xK_n      ), refresh)
       --, ((modMask .|. shiftMask, xK_w      ), withFocused toggleBorder)
@@ -181,7 +185,8 @@ myLayout = tiled ||| Mirror tiled ||| Full
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = composeAll        -- just very simple
+myManageHook = composeAll
+     -- just very simple
 -- doFloat
     -- multimedia
     [ className =? "MPlayer"             --> doFloat
@@ -214,8 +219,27 @@ myManageHook = composeAll        -- just very simple
     , className =? "Linuxdcpp"           --> moveTo "hub"
 -- doIgnore    
     , resource  =? "desktop_window"      --> doIgnore
-    ]
+    ] <+> manageMenus <+> manageDialogs
     where moveTo = doF . W.shift
+--
+-- AutoFloat -- (import Graphics.X11.Xlib.Extras,import Foreign.C.Types (CLong))
+
+getProp :: Atom -> Window -> X (Maybe [CLong])
+getProp a w = withDisplay $ \dpy -> io $ getWindowProperty32 dpy a w
+
+checkAtom name value = ask >>= \w -> liftX $ do
+          a <- getAtom name
+          val <- getAtom value
+          mbr <- getProp a w
+          case mbr of
+            Just [r] -> return $ elem (fromIntegral r) [val]
+            _ -> return False
+
+checkDialog = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DIALOG"
+checkMenu = checkAtom "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU"
+
+manageMenus = checkMenu --> doFloat
+manageDialogs = checkDialog --> doFloat
 
 -- Whether focus follows the mouse pointer -----------------------------
 --
@@ -228,7 +252,7 @@ myFocusFollowsMouse =  True
 
 myStatusBar :: String
 myStatusBar = "dzen2 -fn '-xos4-terminus-bold-r-*-*-16-*-*-*-*-*-iso10646-*' -fg '#4D4D4D' -h 20 -sa c -x 0 -y 0 -w 1000 -e '' -ta l"
- 
+
 myConkyBar :: String
 myConkyBar = "sleep 1 && conky -c ~/.conkyrc | dzen2 -fn '-xos4-terminus-bold-r-*-*-16-*-*-*-*-*-iso10646-*' -fg '#4D4D4D' -h 20 -sa c -x 1000 -y 0 -e '' -ta r"
  
@@ -251,7 +275,6 @@ myLogHook h = dynamicLogWithPP $ defaultPP
     fill h i = "^ca(1,xdotool key super+space)^p(" ++ show i ++ ")" ++ "^p(" ++ h ++ ")" ++ "^p(" ++ show i ++ ")^ca()"
 
 -- Main ----------------------------------------------------------------
---
 
 main :: IO ()
 main = do 

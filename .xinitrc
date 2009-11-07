@@ -5,7 +5,6 @@
 WM="xmonad"
 #WM="xfce4"
 xrdb -merge .Xresources
-xrdb -merge .Xdefaults
 errorlog="$HOME/.xsession-errors"
 xsetroot -cursor_name left_ptr
 urxvtd -q -o -f &

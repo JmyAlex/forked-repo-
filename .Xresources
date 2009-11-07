@@ -3,16 +3,15 @@
 ! author:   enko
 ! modified: nov 2009
 ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
-!
 ! ----------------------------------------------------------------------
 !
 !            X F T    S E T T I N G S
 !
 Xft.dpi:                        96.0
 Xft.hinting:                    true
-Xft.hintstyle:                  hintslight
+Xft.hintstyle:                  hintfull
 Xft.antialias:                  true
-Xft.rgba:                       none
+Xft.rgba:                       rgb
 ! ----------------------------------------------------------------------
 !
 !            X C U R S O R
