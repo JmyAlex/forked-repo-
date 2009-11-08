@@ -1,13 +1,19 @@
-#Взято с Archwiki:
-
+# ~/.screenrc
+# --
+# -- main options ------------------------------------------------------
+#
+defshell -$SHELL
 term xterm-256color
-#term screen-256color-bce
 altscreen on
+autodetach on
 attrcolor b ".I"
+bell_msg '^G'
 defbce "on"
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 deflogin on
 defencoding UTF-8
+defutf8 on
+defflow off
+nonblock on
 #caption always 
 startup_message off
 autodetach on
@@ -15,21 +21,45 @@ vbell on
 nethack on
 defscrollback 5000
 setenv LC_CTYPE ru_RU.UTF-8
+#
+# -- display settings --------------------------------------------------
+#
 hardstatus on
 hardstatus alwayslastline 
 hardstatus alwayslastline "%{= y}%-w%{= Bk} %n %t %{-}%+w %-=%{y}%c "
-
-
-screen zsh
-#screen -t pacman.log tail -f /var/log/pacman.log
-screen -t mpd ncmpcpp
-screen -t htop htop
-select 0 
-#Пользовательские настройки:
-#shelltitle '$ | enko'
-#Hotkeys:
-
-bindkey -k F1 next 
-bindkey -k F2 prev
+#
+# -- keybindings -------------------------------------------------------
+#
+bindkey -k F2 next
+bindkey -k F1 prev
+bind ^k
+bind ^\
+bind Q quit
+bind K kill
+bind } history
+bind s select zsh
 bind ^m screen -t mpd  ncmpcpp          
 bind ^v screen -t vim  vim
+#
+# -- autostart ---------------------------------------------------------
+#
+screen zsh
+screen -t pacman.log tail -f /var/log/pacman.log
+screen -t mpd ncmpcpp
+screen -t htop htop
+select 0
+# 
+# -- user stuff --------------------------------------------------------
+#
+shelltitle '$ | enko'
+#
+# -- make scroll work --------------------------------------------------
+#
+termcapinfo rxvt-256color ti@:te@
+termcapinfo xterm-256color ti@:te@
+#
+# -- make colors work --------------------------------------------------
+#
+termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+#

@@ -108,7 +108,8 @@ alias fu='sudo ~/bin/full_upgrade.sh'
 alias shot='~/bin/shot.sh'
 alias gettime='sudo /usr/bin/ntpdate ru.pool.ntp.org'
 alias dot='~/bin/dotfiles.sh'
-alias 'ex=extract'
+alias mydots='~/bin/mydots.sh'
+alias ex='extract'
 alias grep='grep --color=auto'
 alias df='df -Th'
 alias du='du -h'
@@ -120,6 +121,7 @@ alias tree='tree -L 2 -d -l'
 alias reboot="sudo reboot"
 alias mp32utf='find /mnt/data/music/ -iname "*.mp3" -print0 | xargs -0 mid3iconv -e CP1251 -d --remove-v1'
 alias mplayerlist='find /mnt/data/music -type f -name "*.mp3" -print > list.m3u'
+alias nc='ncmpcpp'
 #
 #-- ls ----------------------------------------------------------------- 
 #

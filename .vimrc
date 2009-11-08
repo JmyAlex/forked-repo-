@@ -32,10 +32,11 @@ set fdm=syntax " Метод фолдинга - по синтаксису
 set foldlevel=9999999 " Разворачиваем все свернутые фолдингом группировки
 set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%B\ %l,%c%V\ %P
 set laststatus=2 " Отображать статусную строку для каждого окна
-set guifont=consolas\ 12
+set guifont=Monospace\ 10
 """""""""""""""""""""""""""""
 "цветовая схема:
-colorscheme zenburn "менее контрастно
+"colorscheme zenburn "менее контрастно
+colorscheme molokai
 ":let g:zenburn_high_Contrast=1 "контрастно
 
 """"""""""""""""""""""""""""""

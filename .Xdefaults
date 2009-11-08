@@ -5,79 +5,112 @@
 ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ----------------------------------------------------------------------
 !
-!             X F T    S E T T I N G S
-!
-Xft.dpi:                     96.0
-Xft.hinting:                 true
-Xft.hintstyle:               hintfull
-Xft.antialias:               true
-Xft.rgba:                    rgb
-! ----------------------------------------------------------------------
-!
-!             X C U R S O R
-!
-Xcursor*theme:               Vanilla-DMZ-AA
-Xcursor.size:                22 
-! ----------------------------------------------------------------------
-!
 !             F O N T     S E T T I N G S
 !
-urxvt*font:                  -*-dina-medium-r-*-*-13-*-*-*-*-*-*-*
-urxvt*boldFont:              -*-dina-bold-r-*-*-13-*-*-*-*-*-*-*
+urxvt*font:                     xft:Terminus:pixelsize=14:antialias=true:hinting=true
+urxvt*boldFont:                 xft:Terminus:pixelsize=14:antialias=true:bold:hinting=true
+urxvt*italicFont:               xft:Terminus:pixelsize=14:antialias=true:italic:autohint=true:hinting=true
+urxvt*bolditalicFont:           xft:Terminus:pixelsize=14:antialias=true:bold:italic:autohint=true:hinting=true
+!urxvt*font:                      xft: Dejavu Sans Mono:pixelsize=12
 ! ----------------------------------------------------------------------
 !
 !             U R X V T
 !
-urxvt.iconFile:              /mnt/data/Themes/KDE_ART/Hycons/32x32/apps/Eterm.png
-urxvt*geometry:         	 80x23
+urxvt.geometry:         	 80x23
+urxvt.depth:                 32
 urxvt.termName:  			 rxvt-256color
 urxvt.loginShell:         	 true
 urxvt.scrollBar:         	 false
+urxvt.jumpScroll:            true
+urxvt.skipScroll:            false
 urxvt.secondaryScroll:    	 false
+urxvt.buffered:              true
 urxvt.saveLines:         	 65535
 urxvt.cursorBlink:       	 true
 urxvt.urgentOnBell:       	 true
 urxvt.override-redirect: 	 false
 urxvt.borderLess:       	 false
-!urxvt.borderWidth:          1
-!urxvt.internalBorder:       0
-urxvt.cursorColor: 			 #DCDCCC
-urxvt.shading:     			 50
-urxvt.transparent: 			 true
-urxvt.perl-ext-common: default,tabbed
+urxvt.shading:     			 30
+urxvt.intensityStyles:       true
+urxvt.transparent: 			 false
+urxvt.perl-ext-common:       selection-autotransform,matcher,tabbed,searchable-scrollback
+urxvt.perl-lib:              /usr/lib/urxvt/perl/
+urxvt.urlLauncher:           /usr/local/bin/firefox
+urxvt.matcher.button:        1
+!
 ! ----------------------------------------------------------------------
 ! 
 !             C O L O R    S E T T I N G S
 !
-urxvt*background:  			 #3f3f3f
-urxvt*foreground:  			 #dcdccc
+!urxvt*foreground:              #dcdccc
+!urxvt*background:              rgba:0000/0000/0000/dddd
+!
+urxvt.cursorColor2:            #000000
+urxvt.colorBD:                 #ffffff
+urxvt.colorIT:                 #bbbbbb
+urxvt.colorUL:                 #999999
+urxvt.underlineColor:          #999999
+! ---------------------------------------------------------------------- 
+!
+!             T H E M E S
 !
 ! Zenburn color-scheme
+!urxvt*background:             #3f3f3f
+!urxvt*foreground:             #dcdccc
 ! black + red
-!urxvt*color0:     			 #3f3f3f
-urxvt*color0:      			 #1E2320
-urxvt*color1:      			 #705050
+!urxvt*color0:                 #1E2320
+!urxvt*color1:                 #705050
 ! green + yellow
-urxvt*color2:      			 #60b48a
-urxvt*color3:      			 #dfaf8f
+!urxvt*color2:                 #60b48a
+!urxvt*color3:                 #dfaf8f
 ! blue + purple
-urxvt*color4:      			 #506070
-urxvt*color5:      			 #dc8cc3
+!urxvt*color4:                 #506070
+!urxvt*color5:                 #dc8cc3
 ! cyan + white
-urxvt*color6:      			 #8cd0d3
-urxvt*color7:      			 #dcdccc
+!urxvt*color6:                 #8cd0d3
+!urxvt*color7:                 #dcdccc
 ! bright-black + bright-red
-urxvt*color8:      			 #709080
-urxvt*color9:      			 #dca3a3
+!urxvt*color8:                 #709080
+!urxvt*color9:                 #dca3a3
 ! bright-green + bright-yellow
-urxvt*color10:     			 #c3bf9f
-urxvt*color11:     		     #f0dfaf
+!urxvt*color10:                #c3bf9f
+!urxvt*color11:                #f0dfaf
 ! bright-blue + bright-purple
-urxvt*color12:     			 #94bff3
-urxvt*color13:     		     #ec93d3
+!urxvt*color12:                #94bff3
+!urxvt*color13:                #ec93d3
 ! bright-cyan + bright-white
-urxvt*color14:      		 #93e0e3
-urxvt*color15:               #ffffff
+!urxvt*color14:                #93e0e3
+!urxvt*color15:                #ffffff
+!
+! -- molokai -----------------------------------------------------------   
+!
+urxvt*foreground:              #a0a0a0
+urxvt*background:              #1b1d1e
+!colors
+!black
+urxvt*color0:                  #1b1d1e
+urxvt*color8:                  #505354
+!red
+urxvt*color1:                  #f92672
+urxvt*color9:                  #ff5995
+!green
+urxvt*color2:                  #82b414
+urxvt*color10:                 #b6e354
+!yellow
+urxvt*color3:                  #fd971f
+urxvt*color11:                 #feed6c
+!blue
+urxvt*color4:                  #56c2d6
+urxvt*color12:                 #8cedff
+!magenta
+urxvt*color5:                  #8c54fe
+urxvt*color13:                 #9e6ffe
+!cyan
+urxvt*color6:                  #465457
+urxvt*color14:                 #899ca1
+!white
+urxvt*color7:                  #ccccc6
+urxvt*color15:                 #f8f8f2
 ! ----------------------------------------------------------------------
 !
 !             X L O C K
@@ -93,16 +126,12 @@ XLock.description: false
 XLock.echokeys: true
 XLock.echokey: *
 XLock.info:
-!XLock.info: Enter password to unlock \nSelect icon to lock
 XLock.validate: Validating login...
 XLock.invalid: Login failed
-XLock.font: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-XLock.planfont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-XLock.messagefont: -xos4-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+XLock.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XLock.planfont: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+XLock.messagefont: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 XLock.ncolors: 256
-!XLock.dpmsstandby: 600
-!XLock.dpmssuspend: 1200
-!XLock.dpmsoff: 1800
 ! ----------------------------------------------------------------------
 !
 !             X M A N
@@ -111,10 +140,8 @@ Xman*Background: #3F3F3F
 Xman*Foreground: #F0DFAF
 Xman*bothShown: true
 Xman*topBox: false
-Xman*manualFontNormal: terminus:14
-Xman*manualFontBold: 
-Xman*manualFontItalic: 
-Xman*directoryFontNormal: 
+Xman*manualFontNormal: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+Xman*manualFontBold: -*-terminus-bold-r-*-*-14-*-*-*-*-*-iso10646-*
 ! ----------------------------------------------------------------------
 !
 !             X C L O C K
@@ -129,29 +156,27 @@ xclock*geometry: 120x120+1160+15
 !
 ! 			  X D I A R Y
 !
-xdiary*geometry: 246x192+1034+15
+xdiary*geometry:   220x190+1034+15
 xdiary*background: #3F3F3F
 xdiary*foreground: #F0DFAF
 !-----------------------------------------------------------------------
 !
 ! 			  X M E S S A G E
 !
-Xmessage*font: -xos4-terminus-bold-r-*-*-16-*-*-*-*-*-iso10646-*
-Xmessage*background: #3F3F3F
-Xmessage*foreground: #F0DFAF
-Xmessage*form.*.shapeStyle: rectangle
-Xmessage*Scrollbar.width: 1
+Xmessage*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+Xmessage*background:            #3F3F3F
+Xmessage*foreground:            #F0DFAF
+Xmessage*form.*.shapeStyle:     rectangle
+Xmessage*Scrollbar.width:       0
 Xmessage*Scrollbar.borderWidth: 0
-!Xmessage.form.message.Scroll: WhenNeeded
-!Xmessage*Buttons: Quit
-!Xmessage*defaultButton: Quit
-!Xmessage*geometry: +20+20
+Xmessage*Buttons:               Quit
+Xmessage*defaultButton:         Quit
 ! ----------------------------------------------------------------------
 !
 !             X C L I P B O A R D
 !
 XClipboard*international: true
-XClipboard*font: -xos4-terminus-bold-r-*-*-16-*-*-*-*-*-iso10646-*
+XClipboard*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 xclipboard.geometry: 287x195+993+15
 XClipboard*borderColor: #3F3F3F
 XClipboard*cursorColor: Gray93
@@ -168,7 +193,7 @@ xload*highlight: grey50
 xload*borderWidth: 1
 xload*background: #3F3F3F
 xload*foreground: #F0DFAF
-xload*font: -xos4-terminus-bold-r-*-*-16-*-*-*-*-*-iso10646-*
+xload*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 xload*padding: 3
 xload*update: 5
 ! ----------------------------------------------------------------------
