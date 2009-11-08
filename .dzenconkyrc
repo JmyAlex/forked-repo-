@@ -1,0 +1,121 @@
+# Use Xft?
+###use_xft yes
+
+#xftfont font Liberation Sans:style=Bold:pixelsize=12
+###xftalpha 0.8
+###text_buffer_size 2048
+
+# Update interval in seconds
+###update_interval 1
+###background no
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+###total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+###own_window yes
+###own_window_transparent yes
+###own_window_type override
+###own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_colour 000000
+
+# Use double buffering (reduces flicker, may not work for everyone)
+###double_buffer yes
+
+# Minimum size of text area
+#minimum_size 180 0
+#maximum_width 200
+
+# Draw shades?
+###draw_shades no
+
+# Draw outlines?
+###draw_outline no
+
+# Draw borders around text
+###draw_borders no
+
+# Stippled borders?
+###stippled_borders 0
+
+# border margins
+#border_margin 5
+###border_inner_margin 5
+
+# border width
+###border_width 1
+
+# Default colors and also border colors
+###color0 light green
+###default_color white
+###default_shade_color black
+###default_outline_color black
+
+# Text alignment, other possible values are commented
+###alignment top_middle
+#alignment top_left
+#alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+#gap_x 35
+#gap_y 50
+###gap_x 0
+###gap_y 0
+
+
+# Subtract file system buffers from used memory?
+###no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+###uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+###cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+###net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+###override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+###use_spacer none
+#-----------------------------------------------------------------------
+#Temp:
+#${color}${font weather:size=30}y${font} ${execi 10 sensors | grep 'Core 0' | cut -b15-16}${color}°C
+#${color}${font weather:size=30}y${font} ${execi 10 sensors | grep 'Core 1' | cut -b15-16}${color}°C
+#Calandar:
+#${color}${font} ${execp /home/enko/.scripts/conky/ConkyCalendar.py
+#Дата:
+#${alignc 35}${font zekton:style=Bold:pixelsize=40}${time %H:%M}${font}
+#${alignc}${time %A %d %Y}
+#Погода:
+#${font}Погода ${hr 2}
+#${color} ${execi 600 /home/enko/.conky/weather/weather.sh RSXX0063}
+#${color} Bash.Org ${hr 2}
+#${color} ${execi 300 /home/enko/.scripts/bash_org_script.sh}
+#${color}${font comic sans ms:style=Bold:pixelsize=18}MPD ${hr 2}
+#${color}${font comic sans ms:pixelsize=12}$mpd_artist - $mpd_title
+#$mpd_status:$mpd_elapsed/$mpd_length ${alignr} 
+#${color}${font comic sans ms:style=Bold:pixelsize=18}BASH.ORG ${hr 2}
+#${color}${font comic sans ms:pixelsize=12} ${execi 300 /home/enko/bin/bash_org_script.sh}
+#${color}Gmail: ${alignr}${execi 300 conkyEmail --servertype=IMAP --servername=imap.googlemail.com --username=musigor@gmail.com --password=peterburg --ssl} Новых сообщений
+#-----------------------------------------------------------------------
+#
+background no
+out_to_console yes
+out_to_x no
+update_interval 1
+total_run_times 0
+#
+#^fg(brown)${exec skb 1}  
+###${font zekton:style=Bold:pixelsize=16}${alignc}${color0}CPU0 ${color}${cpu cpu1}% ${color0} :: CPU1 ${color}${cpu cpu2}% ${color0} :: RAM ${color}${mem} ${color0} :: ROOT ${color}${fs_free /} ${color0} :: HOME ${color}${fs_free /home} ${color0} :: DATA ${color}${fs_free /mnt/data} ${color0} :: eth0 ${color}${totalup eth0} / ${totaldown eth0}${color0} :: ppp0 ${color}${totalup ppp0} / ${totaldown ppp0} 
+#^fg(green) :: CPU0 ${cpu cpu1}% :: CPU1 ${cpu cpu2}% :: RAM ${mem} :: ROOT ${fs_free /} :: HOME ${fs_free /home} :: DATA ${fs_free /mnt/data} ^fg(red)^i(/home/enko/.icons/dzen-xbm/net-wifi.xbm) ^fg(green)ppp0 ${totalup ppp0} / ${totaldown ppp0}^fg(red) ^i(/home/enko/.icons/xbm8x8/clock.xbm)^fg(green) :: ${time %H:%M} ::
+TEXT
+^fg(darkgrey)${exec skb 1} ^fg(brown)^i(/home/enko/.icons/dzen-xbm/cpu.xbm) ^fg(darkgrey)${cpu cpu1}% ${cpu cpu2}% ^fg(brown)^i(/home/enko/.icons/dzen-xbm/mem.xbm)^fg(darkgrey) ${mem}^fg(brown) ^i(/home/enko/.icons/xbm8x8/net_up_01.xbm)^fg(darkgrey) ${totalup ppp0}^fg(brown) ^i(/home/enko/.icons/xbm8x8/net_down_01.xbm)^fg(darkgrey) ${totaldown ppp0} ^fg(brown)^i(/home/enko/.icons/xbm8x8/clock.xbm)^fg(darkgrey) ${time %a %b %d %H:%M}
