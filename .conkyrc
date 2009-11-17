@@ -8,7 +8,7 @@
 alignment bl
 background yes
 border_margin 0
-default_color Black
+default_color 696969
 draw_outline no
 draw_shades no
 double_buffer yes
@@ -25,6 +25,6 @@ xftalpha 0.7
 xftfont Liberation Sans:size=10
 # After TEXT is formatted on screen
 TEXT
-${tail /var/log/everything.log 20}
+${tail /var/log/everything.log 30}
 
 

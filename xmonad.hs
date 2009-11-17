@@ -48,10 +48,10 @@ import qualified XMonad.StackSet as W
 
 -- Variables -----------------------------------------------------------
 --
-myTerminal               = "urxvt"
-myWorkspaces             = ["main","web","chat","hub"] ++ map show [4..9]
-myModMask                = mod4Mask
+myTerminal               = "urxvtc"
+myWorkspaces             = ["main","web","chat","hub","TV"] ++ map show [6..9]
 myXFTFont                = "xft:Liberation-12"   -- see 'Status Bars' for the dzen font
+myModMask                = mod4Mask
 myNormalBorderColor      = colorBG
 myFocusedBorderColor     = colorFG3
 myBorderWidth            = 1
@@ -62,17 +62,17 @@ conkyFile                = "~/.dzenconkyrc"
 colorBG                  = "#303030"         -- background
 colorFG                  = "#7F7F7F"         -- foreground
 colorFG2                 = "#A52A2A"         -- foreground w/ emphasis
-colorFG3                 = "#FF0000"         -- foreground w/ strong emphasis
-colorUrg                 = "#ffa824"         -- urgent
+colorFG3                 = "#FFFFFF"         -- foreground w/ strong emphasis
+colorUrg                 = "#FFFF00"         -- urgent
 
 barHeight                = 20
 monitorWidth             = 1680              -- two statusbars will span this width
-leftBarWidth             = 1190              -- right bar will span difference
+leftBarWidth             = 1160              -- right bar will span difference
 
 -- Keys bindings -------------------------------------------------------
 --
 myKeys = [ ("M-S-m"             , spawn myMail                 ) -- open mail client
-         , ("M-S-i"             , spawn myIRC                  ) -- open IRC client
+         , ("M-S-i"             , spawn myCHAT                 ) -- open chat client
          , ("M-S-<Return>"      , spawn myTerminal             ) -- open terminal-urxvt
          , ("M-S-c"             , kill                         ) -- Close fucused window
          --
@@ -83,10 +83,11 @@ myKeys = [ ("M-S-m"             , spawn myMail                 ) -- open mail cl
          , ("M-d"               , spawn  "pcmanfm ~"           ) -- Open filemanager
          , ("M-g"               , spawn  "geany"               ) -- Open gui texteditor
          , ("M-s"               , spawn  "sakura -e screen"    ) -- Open terminal-sakura      
-         , ("M-e"               , spawn  "eject -T /dev/sr0"   ) -- Open / close cdrom
+         , ("M-`"               , spawn  "eject -T /dev/sr0"   ) -- Open / close cdrom
+         , ("M-e"               , spawn  "urxvt -e vim ~/.xmonad/xmonad.hs") -- Edit this file
 
          -- imports required for these
-         , ("M-t"               , scratchPad                   ) -- spawn scratch pad terminal
+         , ("M-r"               , scratchPad                   ) -- spawn scratch pad terminal
          , ("M-S-w"             , killAll                      ) -- Close all windows on current ws
          , ("M-<R>"             , moveTo Next (WSIs (return $ not . (=="SP") . W.tag))) 
          , ("M-<L>"             , moveTo Prev (WSIs (return $ not . (=="SP") . W.tag)))
@@ -98,19 +99,23 @@ myKeys = [ ("M-S-m"             , spawn myMail                 ) -- open mail cl
          , ("M-i"               , sendMessage MirrorExpand     ) -- Expand slave panes vertically
          , ("M-<Backspace>"     , focusUrgent                  ) -- Focus most recently urgent window
          , ("M-S-<Backspace>"   , clearUrgents                 ) -- Make urgents go away
+         , ("M-S-l"             , sendMessage ToggleStruts     )
 
          -- Multimedia
          , ("M-v"               , spawn "mpc toggle"           ) -- play/pause mpd
          , ("M-x"               , spawn "mpc stop"             ) -- stop mpd
          , ("M-z"               , spawn "mpc prev"             ) -- prev song
          , ("M-b"               , spawn "mpc next"             ) -- next song
-        -- , ("M-bs"             , spawn "mpc seek +2%"          ) -- 
-        -- , ("M-zs"             , spawn "mpc seek -2%"          ) -- 
-
+         , ("M-S-b"             , spawn "mpc seek +2%"         ) -- rewind forward
+         , ("M-S-z"             , spawn "mpc seek -2%"         ) -- rewind back
+         , ("<XF86AudioMute>"       , spawn "amixer -q set Master toggle" ) -- toggle mute
+         , ("<XF86AudioLowerVolume>", spawn "amixer -q set MPD 3%- unmute") -- volume down
+         , ("<XF86AudioRaiseVolume>", spawn "amixer -q set MPD 3%+ unmute") -- volume up
+ 
          -- see below
          , ("M-q"               , spawn  myRestart             ) -- Restart xmonad
          , ("M-S-q"             , spawn "sudo reboot"          ) -- Reboot system
-         , ("M-C-x"             , spawn "sudo shutdown -h now" ) -- Off system
+         , ("M-C-x"             , spawn  myShutdown            ) -- Off system
          ]
 
          where
@@ -119,16 +124,17 @@ myKeys = [ ("M-S-m"             , spawn myMail                 ) -- open mail cl
 
            myBrowser  = "firefox"
            myMail     = myTerminal ++ " -e mutt"
-           myIRC      = myTerminal ++ " -e mcabber"
+           myCHAT     = myTerminal ++ " -e mcabber"
 
            -- killall conky/dzen2 (only if running) before executing default restart command
-           myRestart = "for pid in `pgrep conky`; do kill -9 $pid; done && " ++
-                       "for pid in `pgrep dzen2`; do kill -9 $pid; done && " ++
-                       "xmonad --recompile && xmonad --restart "
+           myRestart  = "for pid in `pgrep conky`; do kill -9 $pid; done && " ++
+                        "for pid in `pgrep dzen2`; do kill -9 $pid; done && " ++
+                        "xmonad --recompile && xmonad --restart "
+           myShutdown = "play /mnt/data/Themes/system_sound/La2/shutdown.wav && sudo shutdown -h now"
                        
 -- Layouts -------------------------------------------------------------
 --
-myLayout = avoidStruts $ onWorkspace "web"  webLayouts   $ 
+myLayout = avoidStruts $ onWorkspace "web"  webLayouts $ 
                          onWorkspace "chat" imLayout   $ 
                          standardLayouts
 
@@ -190,6 +196,7 @@ myManageHook = (composeAll . concat $
   [ [resource  =? r                 --> doIgnore         |  r    <- myIgnores] -- ignore desktop
   , [className =? c                 --> doShift "web"    |  c    <- myWebs   ] -- move browsers to web
   , [className =? c                 --> doShift "hub"    |  c    <- myHubs   ] -- move to hub
+  , [className =? c                 --> doShift "TV"     |  c    <- myTV     ] -- move to TV
   , [title     =? t                 --> doShift "chat"   |  t    <- myChatT  ] -- move chats to chat
   , [className =? c                 --> doShift "chat"   | (c,_) <- myIM     ] -- move chats to chat
   , [className =? c <&&> role /=? r --> doFloat          | (c,r) <- myIM     ] -- float all ims but roster
@@ -209,16 +216,19 @@ myManageHook = (composeAll . concat $
     myChatT   = ["mcabber"]
 
     -- classnames
-    myFloats  = ["MPlayer","Vlc","Smplayer","VirtualBox","Xmessage",
+    myFloats  = ["MPlayer","Smplayer","VirtualBox","Xmessage",
                  "Save As...","XFontSel","XCalc","Lxappearance","Sakura",
                  "Firefox Preferences","Downloads","Send file","Open",
                  "File Transfers","Sonata","Nitrogen","GQview"]
+                 
     myWebs    = ["Firefox"]
-    
+
     myHubs    = ["Linuxdcpp"]
+    
+    myTV      = ["Vlc"]
 
     -- resources
-    myIgnores = ["desktop","desktop_window"]
+    myIgnores = ["desktop","desktop_window","trayer"]
 
     -- names
     myNames   = ["bashrun"]
@@ -292,7 +302,7 @@ myLogHook h = (dynamicLogWithPP $ defaultPP
   , ppSep             = " "
   , ppWsSep           = ""
   , ppOutput          = hPutStrLn h
-  }) -- >> updatePointer (Relative 0.95 0.95) >> myFadeInactive 0.80
+  })  >> updatePointer (Relative 0.95 0.95) >> myFadeInactive 0.75
 
   where
 
@@ -310,12 +320,13 @@ myLogHook h = (dynamicLogWithPP $ defaultPP
     myMailDir = "/home/enko/GMail/INBOX"
 
     myRename = (\x -> case x of
-               "Hinted ResizableTall"          -> "/ /-/  "
-               "Mirror Hinted ResizableTall"   -> "/-,-/  "
-               "Hinted Tabbed Bottom Simplest" -> "/.../  "
-               "Hinted TwoPane"                -> "/ / /  "
-               "Hinted Full"                   -> "/   /  "
-               _                               -> x ++ "  "
+               "Hinted ResizableTall"          -> "/ /-/ "
+               "Mirror Hinted ResizableTall"   -> "/-,-/ "
+               "Hinted Tabbed Bottom Simplest" -> "/.../ "
+               "Hinted TwoPane"                -> "/ / / "
+               "Hinted Full"                   -> "/   / "
+               
+               _                               -> x ++ " "
                ) . stripIM
 
     stripIM s = if "IM " `isPrefixOf` s then drop (length "IM ") s else s
@@ -334,15 +345,15 @@ myLogHook h = (dynamicLogWithPP $ defaultPP
 
 -- sets the opacity of inactive windows to the specified amount
 -- *unless* the current layout is full or tabbed
----myFadeInactive :: Rational -> X ()
----myFadeInactive = fadeOutLogHook . fadeIf (isUnfocused <&&> isGoodLayout)
+myFadeInactive :: Rational -> X ()
+myFadeInactive = fadeOutLogHook . fadeIf (isUnfocused <&&> isGoodLayout)
 
 -- returns True if the layout description does not contain words
 -- "Full" or "Tabbed"
----isGoodLayout:: Query Bool
----isGoodLayout = liftX $ do
-  ---l <- gets (description . W.layout . W.workspace . W.current . windowset)
-  ---return $ not $ any (`isInfixOf` l) ["Full","Tabbed"]
+isGoodLayout:: Query Bool
+isGoodLayout = liftX $ do
+  l <- gets (description . W.layout . W.workspace . W.current . windowset)
+  return $ not $ any (`isInfixOf` l) ["Full","Tabbed"]
    
 --
 
@@ -356,14 +367,14 @@ instance UrgencyHook MySpawnHook where
     urgencyHook (MySpawnHook s) w = spawn $ s
 
 -- 'ding!' on urgent (gajim has fairly unnannoying sounds thankfully)
-myUrgencyHook = MySpawnHook "play -q /usr/share/gajim/data/sounds/message2.wav" 
+myUrgencyHook = MySpawnHook "play -q /usr/share/gajim/data/sounds/bounce.wav" 
 --
 -- Main ----------------------------------------------------------------
 --
 main = do
   d <- spawnPipe myLeftBar
   spawn myRightBar
-  -- spawn "xcompmgr"
+  spawn "xcompmgr"
   -- and finally start xmonad:
   xmonad $ withUrgencyHook myUrgencyHook $ defaultConfig
     { terminal           = myTerminal

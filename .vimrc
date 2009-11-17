@@ -33,22 +33,30 @@ set foldlevel=9999999 " Разворачиваем все свернутые ф�
 set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%B\ %l,%c%V\ %P
 set laststatus=2 " Отображать статусную строку для каждого окна
 set guifont=Monospace\ 10
-"""""""""""""""""""""""""""""
-"цветовая схема:
-"colorscheme zenburn "менее контрастно
-colorscheme molokai
-":let g:zenburn_high_Contrast=1 "контрастно
 
-""""""""""""""""""""""""""""""
+" highlighting tabs, trailing white space and non braking spaces
+if &term !=# "linux"
+    set list listchars=tab:\➜\ ,trail:·,nbsp:-
+endif
+
+"""""""""""""""""""""""""""""
 " 256 colors only if you can handle it
-"if $TERM =~ "-256color"
-"  set t_Co=256
-"  colorscheme zenburn
-"endif
+au VimEnter *
+	      \ if &term == 'xterm' || &term == 'xterm-color' |
+	      \    set t_Co=256     |
+	      \ endif
+	      
+"цветовая схема:
+"colorscheme zenburn 
+colorscheme molokai
+"colorscheme tabula
+"colorscheme professional
+
 
 """"""""""""""""""""""""""""""
 set nocompatible
-set background=dark
+"set background=dark
+set background=light
 """"""""""""""""""""""""""""""
 " смотрим файлы .doc
 au BufReadPost *.doc silent %!antiword "%"

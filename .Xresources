@@ -7,11 +7,11 @@
 !
 !            X F T    S E T T I N G S
 !
-!Xft.dpi:                        96.0
-!Xft.hinting:                    true
-!Xft.hintstyle:                  hintfull
-!Xft.antialias:                  true
-!Xft.rgba:                       none
+Xft.dpi:                        96.0
+Xft.hinting:                    true
+Xft.hintstyle:                  hintfull
+Xft.antialias:                  true
+Xft.rgba:                       none
 ! ----------------------------------------------------------------------
 !
 !            X C U R S O R

@@ -17,16 +17,16 @@ alias pacrm='sudo pacman -Rsn'                    # Удалить пакет,е
 alias pacrd='sudo pacman -Rd'                     # Удалить пакет,игнорируя зависимости
 alias pacs='pacman -Ss'                           # Поиск пакета
 alias pacsl='pacman -Qs'                          # Поиск среди установленных пакетов
-alias pacsi='pacman -Si'						  # Вывод информации о пакете
-alias pacqi='pacman -Qi'						  # Вывод информации об установленном пакете
-alias pacls='pacman -Ql' 				          # Вывод списка файлов пакета
-alias pacfi='pacman -Qo'						  # Какой пакет является владельцем файла? 
-alias paccl='sudo pacman -Scc'				      # Очистка кэша pacman`а
-alias pacdl='sudo pacman -Sw' 					  # Загрузить,но не устанавливать пакет
-alias paclo='pacman -Qdt' 						  # Сироты
+alias pacsi='pacman -Si'			              # Вывод информации о пакете
+alias pacqi='pacman -Qi'			              # Вывод информации об установленном пакете
+alias pacls='pacman -Ql' 		                  # Вывод списка файлов пакета
+alias pacfi='pacman -Qo'			              # Какой пакет является владельцем файла? 
+alias paccl='sudo pacman -Scc'	       	          # Очистка кэша pacman`а
+alias pacdl='sudo pacman -Sw' 		              # Загрузить,но не устанавливать пакет
+alias paclo='pacman -Qdt' 			              # Сироты
 alias paclrm='pacman -Rsn $(pacman -Qdtq)'        # Удалить сирот
-alias paclist='pacman -Qqe > installed_apps.txt'  # Вывод установ.пакетов в файл
-#for x in $(cat installed_apps.txt); do pacman -S $x; done --Установить пакеты из ранее созданного списка
+alias paclist='pacman -Qqe > paclist.txt'  # Вывод установ.пакетов в файл
+#for x in $(cat installed_apps.txt); do pacman -S $x; done #--Установить пакеты из ранее созданного списка
 #
 #-- Yaourt -------------------------------------------------------------
 #
@@ -122,6 +122,7 @@ alias reboot="sudo reboot"
 alias mp32utf='find /mnt/data/music/ -iname "*.mp3" -print0 | xargs -0 mid3iconv -e CP1251 -d --remove-v1'
 alias mplayerlist='find /mnt/data/music -type f -name "*.mp3" -print > list.m3u'
 alias nc='ncmpcpp'
+alias ed='vim ~/.xmonad/xmonad.hs'
 #
 #-- ls ----------------------------------------------------------------- 
 #
