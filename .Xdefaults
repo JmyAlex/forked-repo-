@@ -7,43 +7,43 @@
 !
 !             F O N T     S E T T I N G S
 !
-urxvt*font:                  xft:Terminus:pixelsize=14:antialias=true:hinting=true
-urxvt*boldFont:              xft:Terminus:pixelsize=14:antialias=true:bold:hinting=true
-urxvt*italicFont:            xft:Terminus:pixelsize=14:antialias=true:italic:autohint=true:hinting=true
-urxvt*bolditalicFont:        xft:Terminus:pixelsize=14:antialias=true:bold:italic:autohint=true:hinting=true
-!urxvt*font:                  xft:Monospace:pixelsize=12:antialias=true:hinting=true
+urxvt*font:                    xft:Terminus:pixelsize=14:antialias=true:hinting=true
+urxvt*boldFont:                xft:Terminus:pixelsize=14:antialias=true:bold:hinting=true
+urxvt*italicFont:              xft:Terminus:pixelsize=14:antialias=true:italic:autohint=true:hinting=true
+urxvt*bolditalicFont:          xft:Terminus:pixelsize=14:antialias=true:bold:italic:autohint=true:hinting=true
+!urxvt*font:                   xft:Monospace:pixelsize=12:antialias=true:hinting=true
 ! ----------------------------------------------------------------------
 !
 !             U R X V T
 !
-urxvt.geometry:         	   80x23
-urxvt.depth:                   32
-urxvt.termName:  			   rxvt-256color
-urxvt.loginShell:         	   true
-urxvt.scrollBar:         	   false
-urxvt.jumpScroll:              true
-urxvt.skipScroll:              false
-urxvt.secondaryScroll:    	   false
-urxvt.buffered:                true
-urxvt.saveLines:         	   65535
-urxvt.cursorBlink:       	   true
-urxvt.urgentOnBell:       	   true
-urxvt.override-redirect: 	   false
-urxvt.borderLess:       	   false
-urxvt.shading:     			   30
-urxvt.intensityStyles:         true
-urxvt.transparent: 			   false
+urxvt.geometry:                 80x23
+urxvt.depth:                    32
+urxvt.termName:                 rxvt-256color
+urxvt.loginShell:               true
+urxvt.scrollBar:                false
+urxvt.jumpScroll:               true
+urxvt.skipScroll:               false
+urxvt.secondaryScroll:          false
+urxvt.buffered:                 true
+urxvt.saveLines:                65535
+urxvt.cursorBlink:              true
+urxvt.urgentOnBell:             true
+urxvt.override-redirect:        false
+urxvt.borderLess:               false
+urxvt.shading:                  30
+urxvt.intensityStyles:          true
+urxvt.transparent:              false
 !--
-urxvt.perl-ext-common:         default,matcher,tabbed
-urxvt.perl-lib:                /usr/lib/urxvt/perl/
-urxvt.urlLauncher:             firefox
-urxvt.matcher.button:	       1
+urxvt.perl-ext-common:          default,matcher,tabbed
+urxvt.perl-lib:                 /usr/lib/urxvt/perl/
+urxvt.urlLauncher:              firefox
+urxvt.matcher.button:	        1
 ! --
 urxvt.scrollstyle:xterm
-urxvt.tabbed.tabbar-fg:        2
-urxvt.tabbed.tabbar-bg:        0
-urxvt.tabbed.tab-fg:           11
-urxvt.tabbed.tab-bg:           0
+urxvt.tabbed.tabbar-fg:         2
+urxvt.tabbed.tabbar-bg:         0
+urxvt.tabbed.tab-fg:            11
+urxvt.tabbed.tab-bg:            0
 !
 ! ----------------------------------------------------------------------
 ! 
@@ -61,35 +61,36 @@ urxvt.underlineColor:           #999999
 !
 !             T H E M E S
 !
-! Zenburn color-scheme
-!urxvt*background:              #3f3f3f
-!urxvt*foreground:              #dcdccc
-! black + red
-!urxvt*color0:                  #1E2320
-!urxvt*color1:                  #705050
-! green + yellow
-!urxvt*color2:                  #60b48a
-!urxvt*color3:                  #dfaf8f
-! blue + purple
-!urxvt*color4:                  #506070
-!urxvt*color5:                  #dc8cc3
-! cyan + white
-!urxvt*color6:                  #8cd0d3
-!urxvt*color7:                  #dcdccc
-! bright-black + bright-red
-!urxvt*color8:                  #709080
-!urxvt*color9:                  #dca3a3
-! bright-green + bright-yellow
-!urxvt*color10:                 #c3bf9f
-!urxvt*color11:                 #f0dfaf
-! bright-blue + bright-purple
-!urxvt*color12:                 #94bff3
-!urxvt*color13:                 #ec93d3
-! bright-cyan + bright-white
-!urxvt*color14:                 #93e0e3
-!urxvt*color15:                 #ffffff
+! -- zenburn ------------------------------------------------------------
 !
-! -- molokai -----------------------------------------------------------   
+!urxvt*background:               #3f3f3f
+!urxvt*foreground:               #dcdccc
+! black + red
+!urxvt*color0:                   #1E2320
+!urxvt*color1:                   #705050
+! green + yellow
+!urxvt*color2:                   #60b48a
+!urxvt*color3:                   #dfaf8f
+! blue + purple
+!urxvt*color4:                   #506070
+!urxvt*color5:                   #dc8cc3
+! cyan + white
+!urxvt*color6:                   #8cd0d3
+!urxvt*color7:                   #dcdccc
+! bright-black + bright-red
+!urxvt*color8:                   #709080
+!urxvt*color9:                   #dca3a3
+! bright-green + bright-yellow
+!urxvt*color10:                  #c3bf9f
+!urxvt*color11:                  #f0dfaf
+! bright-blue + bright-purple
+!urxvt*color12:                  #94bff3
+!urxvt*color13:                  #ec93d3
+! bright-cyan + bright-white
+!urxvt*color14:                  #93e0e3
+!urxvt*color15:                  #ffffff
+!
+! -- molokai -------------------------------------------------------------
 !
 !urxvt*foreground:               #a0a0a0
 !urxvt*background:               #1b1d1e
@@ -119,35 +120,35 @@ urxvt.underlineColor:           #999999
 !urxvt*color7:                   #ccccc6
 !urxvt*color15:                  #f8f8f2
 !
-! -- low contrast ---------------------------------------------------
+! -- low contrast ------------------------------------------------------
 !
-urxvt*background:              #101010
-urxvt*foreground:              #cdcdcd
+urxvt*background:               #101010
+urxvt*foreground:               #cdcdcd
 !
 !black
-urxvt*color0:                  #222222
-urxvt*color8:                  #454545
+urxvt*color0:                   #222222
+urxvt*color8:                   #454545
 !red
-urxvt*color1:                  #9E5641
-urxvt*color9:                  #CC896D
+urxvt*color1:                   #9E5641
+urxvt*color9:                   #CC896D
 !green
-urxvt*color2:                  #6C7E55
-urxvt*color10:                 #C4DF90
+urxvt*color2:                   #6C7E55
+urxvt*color10:                  #C4DF90
 !yellow
-urxvt*color3:                  #CAAF2B
-urxvt*color11:                 #FFE080
+urxvt*color3:                   #CAAF2B
+urxvt*color11:                  #FFE080
 !blue
-urxvt*color4:                  #7FB8D8
-urxvt*color12:                 #B8DDEA
+urxvt*color4:                   #7FB8D8
+urxvt*color12:                  #B8DDEA
 !magenta
-urxvt*color5:                  #956D9D
-urxvt*color13:                 #C18FCB
+urxvt*color5:                   #956D9D
+urxvt*color13:                  #C18FCB
 !cyan
-urxvt*color6:                  #4c8ea1
-urxvt*color14:                 #6bc1d0
+urxvt*color6:                   #4c8ea1
+urxvt*color14:                  #6bc1d0
 !white
-urxvt*color7:                  #808080
-urxvt*color15:                 #cdcdcd
+urxvt*color7:                   #808080
+urxvt*color15:                  #cdcdcd
 !
 ! ----------------------------------------------------------------------
 !
@@ -192,14 +193,14 @@ xclock*Foreground: #F0DFAF
 xclock*geometry: 120x120+1160+15
 !-----------------------------------------------------------------------
 !
-! 			  X D I A R Y
+!             X D I A R Y
 !
 xdiary*geometry:   220x190+1034+15
 xdiary*background: #3F3F3F
 xdiary*foreground: #F0DFAF
 !-----------------------------------------------------------------------
 !
-! 			  X M E S S A G E
+!             X M E S S A G E
 !
 Xmessage*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 Xmessage*background:            #3F3F3F
