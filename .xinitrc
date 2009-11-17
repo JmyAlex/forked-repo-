@@ -14,9 +14,10 @@ case $WM in
 	#openbox)
 		nitrogen --restore &
 		#conky &
-		#~/.openconkyrc
+		#~/.openboxconkyrc
 		#~/bin/dzconky.sh &
 		~/bin/dzmpd.sh &
+		#~/.run-xmonad.sh
 		trayer --edge bottom --align right --expand true --SetDockType true --SetPartialStrut true --tint 0x303030 --alpha 0 --transparent true --height 20 --width 5 --margin 0 &
 		xscreensaver -nosplash &
 		numlockx &
